@@ -43,6 +43,7 @@ pub struct BurnExcessSplCtx<'info> {
     )]
     pub fungible_escrow_token_account: InterfaceAccount<'info, TokenAccount>,
 
+    /// CHECK: Checked in constraint
     #[account(
         constraint = token_program.key().eq(fungible_mint.owner)
     )]
