@@ -23,6 +23,7 @@ pub struct JoinRawCtx<'info> {
        seeds = ["deployment".as_ref(), deployment.ticker.as_ref()], bump)]
     pub deployment: Account<'info, DeploymentV2>,
 
+    /// CHECK: PDA checked
     #[account(mut, 
         seeds = ["hashlist".as_bytes(), 
         deployment.key().as_ref()],
