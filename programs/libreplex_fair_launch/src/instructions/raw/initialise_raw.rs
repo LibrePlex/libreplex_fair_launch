@@ -44,6 +44,7 @@ pub struct InitialiseRawCtx<'info>  {
     #[account(mut)]
     pub payer: Signer<'info>,
 
+    /// CHECK: Can be anything
     #[account(mut)]
     pub creator: UncheckedAccount<'info>,
 
