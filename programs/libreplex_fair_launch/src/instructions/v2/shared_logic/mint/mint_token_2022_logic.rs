@@ -9,7 +9,7 @@ use spl_token_metadata_interface::state::TokenMetadata;
 
 use libreplex_shared::{
     create_token_2022_and_metadata, operations::mint_non_fungible_2022_logic, MintAccounts2022,
-    SharedError, TokenMemberInput,
+    SharedError,
 };
 
 use crate::{
@@ -48,7 +48,8 @@ pub fn mint_token2022_logic<'info>(
     deployment: &mut Account<'info, Deployment>,
     deployment_config: &mut Account<'info, DeploymentConfig>,
     fee_treasury: &UncheckedAccount<'info>,
-    fungible_mint: &AccountInfo<'info>,
+    // unused as this method no longer uses token-2022 groups
+    _fungible_mint: &AccountInfo<'info>,
     non_fungible_mint: &Signer<'info>,
     system_program: &Program<'info, System>,
     payer: &Signer<'info>,
