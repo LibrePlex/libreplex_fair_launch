@@ -76,6 +76,7 @@ pub fn deploy_token_2022_logic<'f>(
             }),
             
         },
+        None
     )?;
 
     let deployment_seeds: &[&[u8]] = &[

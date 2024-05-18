@@ -132,11 +132,10 @@ pub fn mint_token2022_logic<'info>(
                 ],
             }),
             None,
-            Some(TokenMemberInput {
-                group_mint: fungible_mint.to_account_info(),
-            }),
+            None,
             Some(deployment_seeds),
             None,
+            None
         )?;
 
         // msg!("Minting 2022");
