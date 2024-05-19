@@ -18,20 +18,6 @@ pub mod sysvar_instructions_program {
     declare_id!("Sysvar1nstructions1111111111111111111111111");
 }   
 
-/*
-
-    Initialise sets the main template parameters of the deployment:
-    1) ticker
-    2) deployment template
-    3) mint template
-    4) decimals
-    5) limit per mint
-    6) max number of tokens
-
-    It does not create any inscriptions / mints as these are handled by the deploy endpoints.
-    This method is metadata agnostic.
-
-*/
 
 #[derive(Accounts)]
 pub struct MigrateToHashlistCtx<'info>  {
