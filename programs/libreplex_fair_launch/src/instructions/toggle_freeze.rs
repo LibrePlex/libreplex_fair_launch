@@ -31,9 +31,12 @@ pub fn toggle_freeze(ctx: Context<ToggleFreeze>) -> Result<()> {
     let delegate = &ctx.accounts.delegate;
     let deployment = ctx.accounts.deployment.as_ref();
 
-    if token_account.delegate.is_none() || token_account.delegated_amount != 1 ||
-     token_account.delegate.as_ref().unwrap() != delegate.key {
+    if token_account.delegate.is_none() || token_account.delegated_amount != 1 {
         panic!("Not delegated");
+    }
+
+    if token_account.delegate.as_ref().unwrap() != delegate.key {
+       panic!("Provided delegate does not match the token account");
     }
 
 
