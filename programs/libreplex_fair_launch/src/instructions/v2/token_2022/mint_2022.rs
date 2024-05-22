@@ -26,6 +26,7 @@ pub struct MintToken2022Ctx<'info> {
         constraint = deployment_config.creator_fee_treasury == creator_fee_treasury.key())] 
     pub creator_fee_treasury: UncheckedAccount<'info>,
 
+    /// CHECK: checked in PDA derivation
     #[account(mut, 
         
         seeds = ["hashlist".as_bytes(), 
@@ -144,8 +145,7 @@ pub fn mint_token2022<'info>(
         non_fungible_token_account, 
         hashlist,
         &mut ctx.accounts.hashlist_marker,
-        ctx.bumps.deployment,
-        ctx.remaining_accounts, signer, true, input)?;
+        ctx.bumps.deployment, signer, true, input)?;
 
     Ok(())
 }

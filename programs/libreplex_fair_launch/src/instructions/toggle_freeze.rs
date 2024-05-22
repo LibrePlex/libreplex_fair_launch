@@ -26,7 +26,7 @@ pub struct ToggleFreeze<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn toggle_freeze(ctx: Context<ToggleFreeze>) -> Result<()> {
+pub fn toggle_freeze_handler(ctx: Context<ToggleFreeze>) -> Result<()> {
     let token_account = ctx.accounts.token_account.as_ref();
     let delegate = &ctx.accounts.delegate;
     let deployment = ctx.accounts.deployment.as_ref();

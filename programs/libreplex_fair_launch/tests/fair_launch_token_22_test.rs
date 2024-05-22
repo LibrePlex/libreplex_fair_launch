@@ -566,20 +566,6 @@ pub async fn mint_token_2022(
         &spl_token_2022::ID,
     );
 
-    let inscription_summary =
-        Pubkey::find_program_address(&[b"inscription_summary"], &libreplex_inscriptions::ID).0;
-
-    let inscription_v3 = Pubkey::find_program_address(
-        &[b"inscription_v3", non_fungible_mint.pubkey().as_ref()],
-        &libreplex_inscriptions::ID,
-    )
-    .0;
-
-    let inscription_data = Pubkey::find_program_address(
-        &[b"inscription_data", non_fungible_mint.pubkey().as_ref()],
-        &libreplex_inscriptions::ID,
-    )
-    .0;
 
     let deployment_config = Pubkey::find_program_address(
         &[b"deployment_config", deployment.as_ref()],
@@ -604,30 +590,6 @@ pub async fn mint_token_2022(
         associated_token_program: associated_token::ID,
     }
     .to_account_metas(None);
-
-    accounts.push(AccountMeta {
-        pubkey: libreplex_inscriptions::ID,
-        is_signer: false,
-        is_writable: false,
-    });
-
-    accounts.push(AccountMeta {
-        pubkey: inscription_summary,
-        is_signer: false,
-        is_writable: true,
-    });
-
-    accounts.push(AccountMeta {
-        pubkey: inscription_v3,
-        is_signer: false,
-        is_writable: true,
-    });
-
-    accounts.push(AccountMeta {
-        pubkey: inscription_data,
-        is_signer: false,
-        is_writable: true,
-    });
 
     let err = banks_client
         .process_transaction(Transaction::new_signed_with_payer(

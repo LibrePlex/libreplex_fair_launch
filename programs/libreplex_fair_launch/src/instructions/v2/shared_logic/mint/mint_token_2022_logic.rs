@@ -13,9 +13,8 @@ use libreplex_shared::{
 };
 
 use crate::{
-    create_fair_launch_inscriptions, errors::FairLaunchError, update_deployment_and_hashlist,
-    Deployment, DeploymentConfig, HashlistMarker, MintInput, HYBRID_DEPLOYMENT_TYPE,
-    TOKEN2022_DEPLOYMENT_TYPE,
+    errors::FairLaunchError, update_deployment_and_hashlist, Deployment, DeploymentConfig,
+    HashlistMarker, MintInput, HYBRID_DEPLOYMENT_TYPE, TOKEN2022_DEPLOYMENT_TYPE,
 };
 
 pub fn validate_new_multiplier(
@@ -60,7 +59,6 @@ pub fn mint_token2022_logic<'info>(
     hashlist: &mut UncheckedAccount<'info>,
     hashlist_marker: &mut HashlistMarker,
     bump_deployment: u8,
-    remaining_accounts: &[AccountInfo<'info>],
     co_signer: &Signer<'info>,
     create_the_nft: bool,
     mint_input: MintInput,
@@ -136,7 +134,7 @@ pub fn mint_token2022_logic<'info>(
             None,
             Some(deployment_seeds),
             None,
-            None
+            None,
         )?;
 
         // msg!("Minting 2022");
@@ -153,48 +151,13 @@ pub fn mint_token2022_logic<'info>(
         )?;
     }
 
-    if deployment.use_inscriptions {
-        if remaining_accounts.len() != 4 {
-            panic!(
-                "Incorrect number of remaining accounts. with use_inscriptions, you must provide 4"
-            );
-        }
-
-        let inscriptions_program = &remaining_accounts[0];
-        let inscription_summary = &remaining_accounts[1];
-        let inscription_v3 = &remaining_accounts[2];
-        let inscription_data = &remaining_accounts[3];
-
-        // msg!("Creating inscriptions");
-        create_fair_launch_inscriptions(
-            inscriptions_program,
-            inscription_summary,
-            non_fungible_mint,
-            inscription_v3,
-            system_program,
-            payer,
-            inscription_data,
-            deployment,
-        )?;
-        update_deployment_and_hashlist(
-            deployment,
-            hashlist,
-            payer,
-            system_program,
-            non_fungible_mint.key(),
-            Some(inscription_summary),
-        )?;
-    } else {
-        update_deployment_and_hashlist(
-            deployment,
-            hashlist,
-            payer,
-            system_program,
-            non_fungible_mint.key(),
-            None,
-        )?;
-    }
-
+    update_deployment_and_hashlist(
+        deployment,
+        hashlist,
+        payer,
+        system_program,
+        non_fungible_mint.key(),
+    )?;
     // finally send a fee to the creator if a fee is specified
     msg!(
         "Creator fee: {}",

@@ -1,6 +1,4 @@
 
-pub mod inscriptions;
-pub use inscriptions::*;
 
 pub mod deploy;
 pub use deploy::*;

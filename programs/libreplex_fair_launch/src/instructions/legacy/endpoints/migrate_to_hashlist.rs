@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
-use anchor_spl::{token::{mint_to, Mint, MintTo, Token, TokenAccount, set_authority, SetAuthority, spl_token::instruction::AuthorityType}, associated_token::AssociatedToken};
-use libreplex_inscriptions::InscriptionV3;
+use anchor_spl::{token::{mint_to, Mint, MintTo, Token, TokenAccount, set_authority, SetAuthority, 
+    spl_token::instruction::AuthorityType}, associated_token::AssociatedToken};
 use libreplex_shared::SharedError;
 
 
@@ -66,8 +66,9 @@ pub struct MigrateToHashlistCtx<'info>  {
     #[account()]
     pub mint: Box<Account<'info, Mint>>,
 
+    /// CHECK: Ignored. Only retained for backwards compatibility
     #[account()]
-    pub inscription_v3: Box<Account<'info, InscriptionV3>>,
+    pub inscription_v3: UncheckedAccount<'info>,
 
 
     #[account(mut,
@@ -101,7 +102,6 @@ pub fn migrate_to_hashlist(ctx: Context<MigrateToHashlistCtx>) -> Result<()> {
     let deployment = &mut ctx.accounts.deployment;
     let hashlist = &mut ctx.accounts.hashlist;
     let mint: &mut Account<'_, Mint> = &mut ctx.accounts.mint;
-    let inscription_v3 = &ctx.accounts.inscription_v3;
     let token_program = &ctx.accounts.token_program;
     let fungible_mint = &ctx.accounts.fungible_mint;
     let fungible_token_account_escrow = &ctx.accounts.fungible_token_account_escrow;
@@ -220,7 +220,7 @@ pub fn migrate_to_hashlist(ctx: Context<MigrateToHashlistCtx>) -> Result<()> {
         system_program, 
         &mint.key(), 
         &deployment.key(),
-        inscription_v3.order
+        0
     )?;
 
     

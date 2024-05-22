@@ -21,11 +21,11 @@ pub mod libreplex_fair_launch {
     }
 
     pub fn initialise_raw(ctx: Context<InitialiseRawCtx>, input: InitialiseRawInput) -> Result<()> {
-        instructions::initialise_raw(ctx, input)
+        instructions::initialise_raw_handler(ctx, input)
     }
 
     pub fn deploy_raw(ctx: Context<DeployRawCtx>) -> Result<()> {
-        instructions::deploy_raw(ctx)
+        instructions::deploy_raw_handler(ctx)
     }
 
     pub fn deploy_token22(ctx: Context<DeployToken2022Ctx>) -> Result<()> {
@@ -33,7 +33,7 @@ pub mod libreplex_fair_launch {
     }
 
     pub fn toggle_freeze(ctx: Context<ToggleFreeze>) -> Result<()> {
-        instructions::toggle_freeze(ctx)
+        instructions::toggle_freeze_handler(ctx)
     }
 
     // deploy hybrid - it's like token 2022 but with an extra metaplex
@@ -124,9 +124,9 @@ pub mod libreplex_fair_launch {
         instructions::swap_to_nonfungible_2022(ctx)
     }
 
-    pub fn mint_legacy<'info>(ctx: Context<'_, '_, '_, 'info, MintLegacyCtx<'info>>) -> Result<()> {
-        instructions::mint_legacy::mint_legacy(ctx)
-    }
+    // pub fn mint_legacy<'info>(ctx: Context<'_, '_, '_, 'info, MintLegacyCtx<'info>>) -> Result<()> {
+    //     instructions::mint_legacy::mint_legacy(ctx)
+    // }
 
     pub fn claim_transfer_fee_auth_as_creator<'info>(
         ctx: Context<'_, '_, '_, 'info, ClaimTransferFeeAuthAsCreatorCtx<'info>>,
@@ -149,12 +149,12 @@ pub mod libreplex_fair_launch {
         instructions::migrate_to_hashlist::migrate_to_hashlist(ctx)
     }
 
-    /* v1 swap methods */
-    pub fn swap_to_fungible(ctx: Context<SwapLegacyToFungibleCtx>) -> Result<()> {
-        instructions::swap_metaplex_to_fungible(ctx)
-    }
+    // /* v1 swap methods */
+    // pub fn swap_to_fungible(ctx: Context<SwapLegacyToFungibleCtx>) -> Result<()> {
+    //     instructions::swap_metaplex_to_fungible(ctx)
+    // }
 
-    pub fn swap_to_nonfungible(ctx: Context<SwapFungibleToLegacyCtx>) -> Result<()> {
-        instructions::swap_to_nonfungible(ctx)
-    }
+    // pub fn swap_to_nonfungible(ctx: Context<SwapFungibleToLegacyCtx>) -> Result<()> {
+    //     instructions::swap_to_nonfungible(ctx)
+    // }
 }

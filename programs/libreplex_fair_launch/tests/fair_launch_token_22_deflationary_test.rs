@@ -7,7 +7,6 @@ use anchor_spl::associated_token::{
     self, get_associated_token_address_with_program_id, AssociatedToken,
 };
 
-use anchor_spl::token_2022::spl_token_2022::extension::transfer_fee::TransferFeeConfig;
 use libreplex_fair_launch::{Deployment, DeploymentConfig, MintInput, MultiplierLimits, TransferFeeInputConfig, TOKEN2022_DEPLOYMENT_TYPE};
 use libreplex_shared::sysvar_instructions_program;
 use solana_program::hash::Hash;
@@ -675,20 +674,7 @@ pub async fn mint_token_2022(
         &spl_token_2022::ID,
     );
 
-    let inscription_summary =
-        Pubkey::find_program_address(&[b"inscription_summary"], &libreplex_inscriptions::ID).0;
-
-    let inscription_v3 = Pubkey::find_program_address(
-        &[b"inscription_v3", non_fungible_mint.pubkey().as_ref()],
-        &libreplex_inscriptions::ID,
-    )
-    .0;
-
-    let inscription_data = Pubkey::find_program_address(
-        &[b"inscription_data", non_fungible_mint.pubkey().as_ref()],
-        &libreplex_inscriptions::ID,
-    )
-    .0;
+   
 
     let deployment_config = Pubkey::find_program_address(
         &[b"deployment_config", deployment.as_ref()],
@@ -714,30 +700,6 @@ pub async fn mint_token_2022(
         
     }
     .to_account_metas(None);
-
-    accounts.push(AccountMeta{
-        pubkey: libreplex_inscriptions::ID,
-        is_signer: false,
-        is_writable: false,
-    });
-
-    accounts.push(AccountMeta{
-        pubkey: inscription_summary,
-        is_signer: false,
-        is_writable: true,
-    });
-
-    accounts.push(AccountMeta{
-        pubkey: inscription_v3,
-        is_signer: false,
-        is_writable: true,
-    });
-
-    accounts.push(AccountMeta{
-        pubkey: inscription_data,
-        is_signer: false,
-        is_writable: true,
-    });
 
     let err = banks_client
         .process_transaction(Transaction::new_signed_with_payer(

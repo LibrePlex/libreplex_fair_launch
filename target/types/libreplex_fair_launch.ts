@@ -1,597 +1,2027 @@
+/**
+ * Program IDL in camelCase format in order to be used in JS/TS.
+ *
+ * Note that this is only a type helper and is not the actual IDL. The original
+ * IDL can be found at `target/idl/libreplex_fair_launch.json`.
+ */
 export type LibreplexFairLaunch = {
-  "version": "0.3.1",
-  "name": "libreplex_fair_launch",
+  "address": "",
+  "metadata": {
+    "name": "libreplexFairLaunch",
+    "version": "0.5.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor",
+    "repository": "https://github.com/Libreplex/libreplex-program-library"
+  },
   "instructions": [
     {
-      "name": "initialiseV3",
+      "name": "burnExcessSpl",
+      "discriminator": [
+        157,
+        22,
+        56,
+        53,
+        178,
+        56,
+        202,
+        88
+      ],
       "accounts": [
         {
           "name": "deployment",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "payer",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
         },
         {
-          "name": "creator",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "input",
-          "type": {
-            "defined": "InitialiseInputV3"
-          }
-        }
-      ]
-    },
-    {
-      "name": "initialiseRaw",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
+          "name": "signer",
+          "signer": true
         },
         {
           "name": "fungibleMint",
-          "isMut": false,
-          "isSigner": false
+          "writable": true
+        },
+        {
+          "name": "fungibleEscrowTokenAccount",
+          "writable": true
+        },
+        {
+          "name": "tokenProgram"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claimTransferFeeAuthAsCreator",
+      "discriminator": [
+        41,
+        176,
+        89,
+        213,
+        104,
+        212,
+        241,
+        249
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deploymentConfig",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "payer",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "fungibleMint",
+          "writable": true
         },
         {
           "name": "creator",
-          "isMut": true,
-          "isSigner": false
+          "writable": true
+        },
+        {
+          "name": "creatorAta",
+          "writable": true
+        },
+        {
+          "name": "tokenProgram22",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "11111111111111111111111111111111"
         }
       ],
       "args": [
         {
-          "name": "input",
+          "name": "sources",
           "type": {
-            "defined": "InitialiseRawInput"
+            "vec": "pubkey"
           }
         }
       ]
     },
     {
-      "name": "deployRaw",
+      "name": "deployHybridUnchecked",
+      "discriminator": [
+        125,
+        206,
+        244,
+        176,
+        151,
+        108,
+        3,
+        227
+      ],
       "accounts": [
         {
           "name": "deployment",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deploymentConfig",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "payer",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "creator",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "fungibleMint"
+        },
+        {
+          "name": "fungibleEscrowTokenAccount",
+          "writable": true
+        },
+        {
+          "name": "tokenProgram"
+        },
+        {
+          "name": "associatedTokenProgram",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "deployRaw",
+      "discriminator": [
+        115,
+        58,
+        206,
+        193,
+        21,
+        201,
+        134,
+        96
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deploymentV2"
+              }
+            ]
+          }
+        },
+        {
+          "name": "hashlist",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
         }
       ],
       "args": []
     },
     {
       "name": "deployToken22",
+      "discriminator": [
+        206,
+        227,
+        152,
+        1,
+        237,
+        228,
+        32,
+        64
+      ],
       "accounts": [
         {
           "name": "deployment",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "deploymentConfig",
-          "isMut": false,
-          "isSigner": false
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "payer",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
         },
         {
           "name": "creator",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
         },
         {
           "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
         },
         {
           "name": "fungibleEscrowTokenAccount",
-          "isMut": true,
-          "isSigner": false
+          "writable": true
         },
         {
-          "name": "tokenProgram2022",
-          "isMut": false,
-          "isSigner": false
+          "name": "tokenProgram2022"
         },
         {
           "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "11111111111111111111111111111111"
         },
         {
           "name": "rent",
-          "isMut": false,
-          "isSigner": false
+          "address": "SysvarRent111111111111111111111111111111111"
         },
         {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "toggleFreeze",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "mint",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "delegate",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
+          "name": "sysvarInstructions"
         }
       ],
       "args": []
     },
     {
       "name": "deployhybrid",
+      "discriminator": [
+        143,
+        85,
+        60,
+        117,
+        253,
+        94,
+        52,
+        42
+      ],
       "accounts": [
         {
           "name": "deployment",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "deploymentConfig",
-          "isMut": false,
-          "isSigner": false
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "payer",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
         },
         {
           "name": "creator",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
         },
         {
           "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
         },
         {
           "name": "fungibleMasterEdition",
-          "isMut": true,
-          "isSigner": false
+          "writable": true
         },
         {
           "name": "fungibleMetadata",
-          "isMut": true,
-          "isSigner": false
+          "writable": true
         },
         {
           "name": "fungibleEscrowTokenAccount",
-          "isMut": true,
-          "isSigner": false
+          "writable": true
         },
         {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
+          "name": "tokenProgram"
         },
         {
           "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "11111111111111111111111111111111"
         },
         {
           "name": "rent",
-          "isMut": false,
-          "isSigner": false
+          "address": "SysvarRent111111111111111111111111111111111"
         },
         {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
+          "name": "sysvarInstructions"
         },
         {
           "name": "metadataProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
         }
       ],
       "args": []
     },
     {
-      "name": "deployHybridUnchecked",
+      "name": "initialiseRaw",
+      "discriminator": [
+        217,
+        72,
+        83,
+        76,
+        139,
+        228,
+        78,
+        122
+      ],
       "accounts": [
         {
           "name": "deployment",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "input.ticker"
+              }
+            ]
+          }
         },
         {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
+          "name": "fungibleMint"
         },
         {
           "name": "payer",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
         },
         {
           "name": "creator",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleEscrowTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
+          "writable": true
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "relinquishCosigner",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "cosigner",
-          "isMut": true,
-          "isSigner": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "updateSymbol22",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "signer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "join",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false,
-          "relations": [
-            "fungible_mint"
-          ]
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "creatorFeeTreasury",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "signer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "nonFungibleTokenAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleTokenAccountOwner",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "11111111111111111111111111111111"
         }
       ],
       "args": [
         {
           "name": "input",
           "type": {
-            "defined": "MintInput"
+            "defined": {
+              "name": "initialiseRawInput"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "initialiseV3",
+      "discriminator": [
+        39,
+        27,
+        181,
+        185,
+        137,
+        127,
+        106,
+        82
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "input.ticker"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deploymentConfig",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "creator"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": {
+              "name": "initialiseInputV3"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "join",
+      "discriminator": [
+        206,
+        55,
+        2,
+        106,
+        113,
+        220,
+        17,
+        163
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deploymentConfig",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "creatorFeeTreasury",
+          "writable": true
+        },
+        {
+          "name": "hashlist",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "hashlistMarker",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116,
+                  95,
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              },
+              {
+                "kind": "account",
+                "path": "nonFungibleMint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "fungibleMint",
+          "writable": true,
+          "relations": [
+            "deployment"
+          ]
+        },
+        {
+          "name": "nonFungibleMint",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "nonFungibleTokenAccount"
+        },
+        {
+          "name": "nonFungibleTokenAccountOwner",
+          "signer": true
+        },
+        {
+          "name": "tokenProgram"
+        },
+        {
+          "name": "associatedTokenProgram",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": {
+              "name": "mintInput"
+            }
           }
         }
       ]
     },
     {
       "name": "joinraw",
+      "discriminator": [
+        19,
+        122,
+        16,
+        218,
+        143,
+        254,
+        26,
+        192
+      ],
       "accounts": [
         {
           "name": "deployment",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deploymentV2"
+              }
+            ]
+          }
         },
         {
           "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
         },
         {
           "name": "hashlistMarker",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116,
+                  95,
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              },
+              {
+                "kind": "account",
+                "path": "nonFungibleMint"
+              }
+            ]
+          }
         },
         {
           "name": "payer",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
         },
         {
           "name": "signer",
-          "isMut": false,
-          "isSigner": true
+          "signer": true
         },
         {
-          "name": "nonFungibleMint",
-          "isMut": false,
-          "isSigner": false
+          "name": "nonFungibleMint"
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "11111111111111111111111111111111"
         }
       ],
       "args": [
         {
           "name": "input",
           "type": {
-            "defined": "MintInput"
+            "defined": {
+              "name": "mintInput"
+            }
           }
         }
       ]
     },
     {
-      "name": "updateSplMetadata",
+      "name": "migrateToHashlist",
+      "discriminator": [
+        84,
+        60,
+        54,
+        13,
+        48,
+        42,
+        238,
+        5
+      ],
       "accounts": [
         {
           "name": "deployment",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "migrationMarker",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  103,
+                  114,
+                  97,
+                  116,
+                  105,
+                  111,
+                  110,
+                  95,
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "migrationCounter",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  103,
+                  114,
+                  97,
+                  116,
+                  105,
+                  111,
+                  110,
+                  95,
+                  99,
+                  111,
+                  117,
+                  110,
+                  116,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
         },
         {
           "name": "signer",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "hashlist",
+          "writable": true
+        },
+        {
+          "name": "hashlistMarker",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116,
+                  95,
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "inscriptionV3"
         },
         {
           "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
+          "writable": true
         },
         {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
+          "name": "fungibleTokenAccountEscrow",
+          "writable": true
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "tokenProgram",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associatedTokenProgram",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "mintToken22",
+      "discriminator": [
+        12,
+        10,
+        190,
+        68,
+        81,
+        106,
+        186,
+        221
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deploymentConfig",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "creatorFeeTreasury",
+          "writable": true
+        },
+        {
+          "name": "hashlist",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "hashlistMarker",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116,
+                  95,
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              },
+              {
+                "kind": "account",
+                "path": "nonFungibleMint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "fungibleMint",
+          "writable": true
+        },
+        {
+          "name": "minter",
+          "writable": true
+        },
+        {
+          "name": "nonFungibleMint",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "nonFungibleTokenAccount",
+          "writable": true
+        },
+        {
+          "name": "tokenProgram"
+        },
+        {
+          "name": "associatedTokenProgram",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
         }
       ],
       "args": [
         {
-          "name": "newUri",
-          "type": "string"
+          "name": "input",
+          "type": {
+            "defined": {
+              "name": "mintInput"
+            }
+          }
         }
       ]
     },
     {
-      "name": "switchDeploymentType",
+      "name": "reduceMintCount",
+      "discriminator": [
+        157,
+        237,
+        45,
+        50,
+        51,
+        188,
+        99,
+        211
+      ],
       "accounts": [
         {
           "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
+          "writable": true
         },
         {
           "name": "payer",
-          "isMut": true,
-          "isSigner": true
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "creator",
+          "signer": true
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": {
+              "name": "reduceMintCountInput"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "relinquishCosigner",
+      "discriminator": [
+        69,
+        8,
+        121,
+        143,
+        73,
+        21,
+        58,
+        18
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "cosigner",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "swapToFungible22",
+      "discriminator": [
+        173,
+        67,
+        166,
+        82,
+        47,
+        116,
+        79,
+        10
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        },
+        {
+          "name": "fungibleMint",
+          "writable": true
+        },
+        {
+          "name": "hashlistMarker",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116,
+                  95,
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              },
+              {
+                "kind": "account",
+                "path": "nonFungibleMint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fungibleSourceTokenAccount",
+          "docs": [
+            "this always exists so we can specify the account type explicitly"
+          ],
+          "writable": true
+        },
+        {
+          "name": "fungibleTargetTokenAccount",
+          "writable": true
+        },
+        {
+          "name": "fungibleTargetTokenAccountOwner"
+        },
+        {
+          "name": "nonFungibleMint",
+          "writable": true
+        },
+        {
+          "name": "nonFungibleSourceAccountOwner",
+          "signer": true
+        },
+        {
+          "name": "nonFungibleSourceTokenAccount",
+          "docs": [
+            "this always exists (otherwise we couldn't swap), so we can specify the account",
+            "type explicitly"
+          ],
+          "writable": true
+        },
+        {
+          "name": "nonFungibleTargetTokenAccount",
+          "writable": true
+        },
+        {
+          "name": "tokenProgram22",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        },
+        {
+          "name": "tokenProgram",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associatedTokenProgram",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "sysvarInstructions"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "swapToNonfungible22",
+      "discriminator": [
+        105,
+        81,
+        181,
+        80,
+        169,
+        70,
+        223,
+        42
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deploymentConfig",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "fungibleMint",
+          "writable": true
+        },
+        {
+          "name": "fungibleSourceTokenAccount",
+          "writable": true
+        },
+        {
+          "name": "fungibleTargetTokenAccount",
+          "writable": true
+        },
+        {
+          "name": "nonFungibleMint",
+          "writable": true
+        },
+        {
+          "name": "nonFungibleSourceTokenAccount",
+          "writable": true
+        },
+        {
+          "name": "hashlistMarker",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116,
+                  95,
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              },
+              {
+                "kind": "account",
+                "path": "nonFungibleMint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "nonFungibleTargetTokenAccount",
+          "writable": true
+        },
+        {
+          "name": "tokenProgram22",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        },
+        {
+          "name": "tokenProgram",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associatedTokenProgram",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "sysvarInstructions"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "switchDeploymentType",
+      "discriminator": [
+        4,
+        48,
+        136,
+        36,
+        252,
+        203,
+        223,
+        15
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true
+        },
+        {
+          "name": "deploymentConfig",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
         }
       ],
       "args": [
@@ -602,726 +2032,221 @@ export type LibreplexFairLaunch = {
       ]
     },
     {
-      "name": "reduceMintCount",
+      "name": "toggleFreeze",
+      "discriminator": [
+        136,
+        3,
+        54,
+        90,
+        252,
+        134,
+        158,
+        172
+      ],
       "accounts": [
         {
           "name": "deployment",
-          "isMut": true,
-          "isSigner": false
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
         },
         {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
+          "name": "mint"
         },
         {
-          "name": "creator",
-          "isMut": false,
-          "isSigner": true
+          "name": "tokenAccount"
+        },
+        {
+          "name": "delegate",
+          "signer": true
+        },
+        {
+          "name": "tokenProgram"
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "updateSplMetadata",
+      "discriminator": [
+        121,
+        242,
+        104,
+        72,
+        126,
+        4,
+        142,
+        26
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "fungibleMint",
+          "writable": true
+        },
+        {
+          "name": "tokenProgram"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
         }
       ],
       "args": [
         {
-          "name": "input",
-          "type": {
-            "defined": "ReduceMintCountInput"
-          }
+          "name": "newUri",
+          "type": "string"
         }
       ]
     },
     {
-      "name": "burnExcessSpl",
+      "name": "updateSymbol22",
+      "discriminator": [
+        202,
+        189,
+        223,
+        193,
+        106,
+        62,
+        27,
+        46
+      ],
       "accounts": [
         {
           "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "signer",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleEscrowTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "mintToken22",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "creatorFeeTreasury",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "signer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "minter",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "nonFungibleTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "input",
-          "type": {
-            "defined": "MintInput"
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
           }
-        }
-      ]
-    },
-    {
-      "name": "swapToFungible22",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "signer",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
         },
         {
           "name": "hashlistMarker",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "this always exists so we can specify the account type explicitly"
-          ]
-        },
-        {
-          "name": "fungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleTargetTokenAccountOwner",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleSourceAccountOwner",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "nonFungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "this always exists (otherwise we couldn't swap), so we can specify the account",
-            "type explicitly"
-          ]
-        },
-        {
-          "name": "nonFungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram22",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "swapToNonfungible22",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram22",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "mintLegacy",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "inscriber",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleTokenAccountEscrow",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "nonFungibleTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMetadata",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMasteredition",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "inscriptionSummary",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "inscription",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "inscriptionV3",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "inscriptionData",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "inscriptionsProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "metadataProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "claimTransferFeeAuthAsCreator",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "creator",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "creatorAta",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram22",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "sources",
-          "type": {
-            "vec": "publicKey"
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116,
+                  95,
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              },
+              {
+                "kind": "account",
+                "path": "nonFungibleMint"
+              }
+            ]
           }
-        }
-      ]
-    },
-    {
-      "name": "migrateToHashlist",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "migrationMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "migrationCounter",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
         },
         {
           "name": "signer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "mint",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "inscriptionV3",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleTokenAccountEscrow",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "swapToFungible",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "this always exists so we can specify the account type explicitly"
-          ]
-        },
-        {
-          "name": "fungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
+          "writable": true,
+          "signer": true
         },
         {
           "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": false
+          "writable": true
         },
         {
-          "name": "nonFungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "this always exists (otherwise we couldn't swap), so we can specify the account",
-            "type explicitly"
-          ]
-        },
-        {
-          "name": "nonFungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
+          "name": "tokenProgram"
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "swapToNonfungible",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
+          "address": "11111111111111111111111111111111"
         }
       ],
       "args": []
@@ -1330,12 +2255,92 @@ export type LibreplexFairLaunch = {
   "accounts": [
     {
       "name": "deployment",
+      "discriminator": [
+        66,
+        90,
+        104,
+        89,
+        183,
+        130,
+        64,
+        178
+      ]
+    },
+    {
+      "name": "deploymentConfig",
+      "discriminator": [
+        13,
+        112,
+        57,
+        81,
+        43,
+        26,
+        156,
+        18
+      ]
+    },
+    {
+      "name": "deploymentV2",
+      "discriminator": [
+        48,
+        38,
+        175,
+        59,
+        5,
+        208,
+        85,
+        104
+      ]
+    },
+    {
+      "name": "hashlist",
+      "discriminator": [
+        187,
+        203,
+        134,
+        6,
+        43,
+        198,
+        120,
+        186
+      ]
+    },
+    {
+      "name": "migrationCounter",
+      "discriminator": [
+        112,
+        205,
+        130,
+        135,
+        57,
+        50,
+        236,
+        108
+      ]
+    },
+    {
+      "name": "migrationMarker",
+      "discriminator": [
+        187,
+        159,
+        18,
+        140,
+        101,
+        139,
+        9,
+        106
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "deployment",
       "type": {
         "kind": "struct",
         "fields": [
           {
             "name": "creator",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "limitPerMint",
@@ -1387,11 +2392,27 @@ export type LibreplexFairLaunch = {
           },
           {
             "name": "fungibleMint",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "offchainUrl",
             "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "deploymentActive",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "ticker",
+            "type": "string"
+          },
+          {
+            "name": "fungibleMint",
+            "type": "pubkey"
           }
         ]
       }
@@ -1403,11 +2424,11 @@ export type LibreplexFairLaunch = {
         "fields": [
           {
             "name": "deployment",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "creatorFeeTreasury",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "creatorFeePerMintLamports",
@@ -1419,26 +2440,28 @@ export type LibreplexFairLaunch = {
           },
           {
             "name": "cosignerProgramId",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "multiplierLimits",
             "type": {
               "option": {
-                "defined": "MultiplierLimits"
+                "defined": {
+                  "name": "multiplierLimits"
+                }
               }
             }
           },
           {
             "name": "transferFeeWithdrawAuthority",
             "type": {
-              "option": "publicKey"
+              "option": "pubkey"
             }
           },
           {
             "name": "transferFeeTargetWallet",
             "type": {
-              "option": "publicKey"
+              "option": "pubkey"
             }
           },
           {
@@ -1468,56 +2491,13 @@ export type LibreplexFairLaunch = {
       }
     },
     {
-      "name": "hashlist",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "deployment",
-            "type": "publicKey"
-          },
-          {
-            "name": "issues",
-            "type": {
-              "vec": {
-                "defined": "MintAndOrder"
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "migrationCounter",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "deployment",
-            "type": "publicKey"
-          },
-          {
-            "name": "migrationCount",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "migrationMarker",
-      "type": {
-        "kind": "struct",
-        "fields": []
-      }
-    },
-    {
       "name": "deploymentV2",
       "type": {
         "kind": "struct",
         "fields": [
           {
             "name": "creator",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "limitPerMint",
@@ -1545,7 +2525,7 @@ export type LibreplexFairLaunch = {
           },
           {
             "name": "fungibleMint",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "offchainUrl",
@@ -1553,30 +2533,34 @@ export type LibreplexFairLaunch = {
           },
           {
             "name": "proxyProgramId",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "cosignerMint",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "cosignerSwapToNft",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "cosignerSwapToSpl",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "fungibleType",
             "type": {
-              "defined": "FungibleType"
+              "defined": {
+                "name": "fungibleType"
+              }
             }
           },
           {
             "name": "nonFungibleType",
             "type": {
-              "defined": "NonFungibleType"
+              "defined": {
+                "name": "nonFungibleType"
+              }
             }
           },
           {
@@ -1596,145 +2580,59 @@ export type LibreplexFairLaunch = {
       }
     },
     {
-      "name": "inscriptionSummary",
+      "name": "fungibleType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "tokenKeg"
+          },
+          {
+            "name": "token2022"
+          }
+        ]
+      }
+    },
+    {
+      "name": "hashlist",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "inscriptionCountTotal",
-            "type": "u64"
+            "name": "deployment",
+            "type": "pubkey"
           },
           {
-            "name": "inscriptionCountImmutables",
-            "type": "u64"
-          },
-          {
-            "name": "lastInscription",
-            "type": "publicKey"
-          },
-          {
-            "name": "lastInscriber",
-            "type": "publicKey"
-          },
-          {
-            "name": "lastInscriptionCreateTime",
-            "type": "i64"
-          },
-          {
-            "name": "extension",
+            "name": "issues",
             "type": {
-              "defined": "SummaryExtension"
+              "vec": {
+                "defined": {
+                  "name": "mintAndOrder"
+                }
+              }
             }
           }
         ]
       }
     },
     {
-      "name": "inscriptionV3",
+      "name": "hashlistEvent",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "authority",
-            "type": "publicKey"
+            "name": "mint",
+            "type": "pubkey"
           },
           {
-            "name": "root",
-            "type": "publicKey"
-          },
-          {
-            "name": "inscriptionData",
-            "type": "publicKey"
-          },
-          {
-            "name": "order",
-            "type": "u64"
-          },
-          {
-            "name": "size",
-            "type": "u32"
-          },
-          {
-            "name": "contentType",
-            "type": "string"
-          },
-          {
-            "name": "encoding",
-            "type": "string"
-          },
-          {
-            "name": "validationHash",
-            "type": {
-              "option": "string"
-            }
-          }
-        ]
-      }
-    }
-  ],
-  "types": [
-    {
-      "name": "InitialiseRawInput",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "limitPerMint",
-            "type": "u64"
-          },
-          {
-            "name": "maxNumberOfTokens",
-            "type": "u64"
-          },
-          {
-            "name": "ticker",
-            "type": "string"
-          },
-          {
-            "name": "offchainUrl",
-            "type": "string"
-          },
-          {
-            "name": "proxyProgramId",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "cosignerMint",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "cosignerSwapToSpl",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "cosignerSwapToNft",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "fungibleType",
-            "type": {
-              "defined": "FungibleType"
-            }
-          },
-          {
-            "name": "nonFungibleType",
-            "type": {
-              "defined": "NonFungibleType"
-            }
+            "name": "deployment",
+            "type": "pubkey"
           }
         ]
       }
     },
     {
-      "name": "InitialiseInputV3",
+      "name": "initialiseInputV3",
       "type": {
         "kind": "struct",
         "fields": [
@@ -1769,7 +2667,7 @@ export type LibreplexFairLaunch = {
           {
             "name": "creatorCosignProgramId",
             "type": {
-              "option": "publicKey"
+              "option": "pubkey"
             }
           },
           {
@@ -1782,7 +2680,7 @@ export type LibreplexFairLaunch = {
           },
           {
             "name": "creatorFeeTreasury",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "creatorFeePerMintInLamports",
@@ -1791,14 +2689,18 @@ export type LibreplexFairLaunch = {
           {
             "name": "multiplierLimits",
             "type": {
-              "defined": "MultiplierLimits"
+              "defined": {
+                "name": "multiplierLimits"
+              }
             }
           },
           {
             "name": "transferFeeConfig",
             "type": {
               "option": {
-                "defined": "TransferFeeInputConfig"
+                "defined": {
+                  "name": "transferFeeInputConfig"
+                }
               }
             }
           }
@@ -1806,1772 +2708,10 @@ export type LibreplexFairLaunch = {
       }
     },
     {
-      "name": "TransferFeeInputConfig",
+      "name": "initialiseRawInput",
       "type": {
         "kind": "struct",
         "fields": [
-          {
-            "name": "feeInBasisPoints",
-            "type": "u16"
-          },
-          {
-            "name": "withdrawAuthority",
-            "type": "publicKey"
-          },
-          {
-            "name": "targetWallet",
-            "type": "publicKey"
-          },
-          {
-            "name": "allowClaimTransferFeeAuthAsCreator",
-            "type": "bool"
-          }
-        ]
-      }
-    },
-    {
-      "name": "ReduceMintCountInput",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "maxNumberOfTokens",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "MintInput",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "multiplierNumerator",
-            "type": "u16"
-          },
-          {
-            "name": "multiplierDenominator",
-            "type": "u16"
-          }
-        ]
-      }
-    },
-    {
-      "name": "DeploymentConfig",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "deployment",
-            "type": "publicKey"
-          },
-          {
-            "name": "creatorFeeTreasury",
-            "type": "publicKey"
-          },
-          {
-            "name": "creatorFeePerMintLamports",
-            "type": "u64"
-          },
-          {
-            "name": "transferFeeInBasisPoints",
-            "type": "u16"
-          },
-          {
-            "name": "cosignerProgramId",
-            "type": "publicKey"
-          },
-          {
-            "name": "multiplierLimits",
-            "type": {
-              "option": {
-                "defined": "MultiplierLimits"
-              }
-            }
-          },
-          {
-            "name": "transferFeeWithdrawAuthority",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "transferFeeTargetWallet",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "totalSplEquivalentMinted",
-            "type": "u64"
-          },
-          {
-            "name": "splExcessInEscrow",
-            "type": "u64"
-          },
-          {
-            "name": "allowBurn",
-            "docs": [
-              "used for variable-rate swaps"
-            ],
-            "type": "bool"
-          },
-          {
-            "name": "allowClaimTransferFeeAuthAsCreator",
-            "type": "bool"
-          },
-          {
-            "name": "uncheckedFungible",
-            "type": "bool"
-          }
-        ]
-      }
-    },
-    {
-      "name": "MintAndOrder",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "mint",
-            "type": "publicKey"
-          },
-          {
-            "name": "order",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "MultiplierLimits",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "maxNumerator",
-            "type": "u16"
-          },
-          {
-            "name": "minDenominator",
-            "type": "u16"
-          }
-        ]
-      }
-    },
-    {
-      "name": "FungibleType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "TokenKeg"
-          },
-          {
-            "name": "Token2022"
-          }
-        ]
-      }
-    },
-    {
-      "name": "NonFungibleType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "TokenKeg"
-          },
-          {
-            "name": "Token2022"
-          },
-          {
-            "name": "Nifty"
-          }
-        ]
-      }
-    },
-    {
-      "name": "SummaryExtension",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "None"
-          }
-        ]
-      }
-    }
-  ],
-  "events": [
-    {
-      "name": "DeploymentActive",
-      "fields": [
-        {
-          "name": "ticker",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "fungibleMint",
-          "type": "publicKey",
-          "index": false
-        }
-      ]
-    },
-    {
-      "name": "HashlistEvent",
-      "fields": [
-        {
-          "name": "mint",
-          "type": "publicKey",
-          "index": false
-        },
-        {
-          "name": "deployment",
-          "type": "publicKey",
-          "index": false
-        }
-      ]
-    },
-    {
-      "name": "MintEvent",
-      "fields": [
-        {
-          "name": "mint",
-          "type": "publicKey",
-          "index": false
-        },
-        {
-          "name": "ticker",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "tokensMinted",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "maxNumberOfTokens",
-          "type": "u64",
-          "index": false
-        }
-      ]
-    },
-    {
-      "name": "NewDeploymentEvent",
-      "fields": [
-        {
-          "name": "ticker",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "limitPerMint",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "maxNumberOfTokens",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "creator",
-          "type": "publicKey",
-          "index": false
-        }
-      ]
-    },
-    {
-      "name": "NewDeploymentV2",
-      "fields": [
-        {
-          "name": "ticker",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "limitPerMint",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "maxNumberOfTokens",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "creator",
-          "type": "publicKey",
-          "index": false
-        },
-        {
-          "name": "offChainUrl",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "requireCoSign",
-          "type": "bool",
-          "index": false
-        },
-        {
-          "name": "deploymentTemplate",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "mintTemplate",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "usesInscriptions",
-          "type": "bool",
-          "index": false
-        },
-        {
-          "name": "decimals",
-          "type": "u8",
-          "index": false
-        },
-        {
-          "name": "deploymentType",
-          "type": "u8",
-          "index": false
-        },
-        {
-          "name": "config",
-          "type": {
-            "option": {
-              "defined": "DeploymentConfig"
-            }
-          },
-          "index": false
-        }
-      ]
-    }
-  ],
-  "errors": [
-    {
-      "code": 6000,
-      "name": "TickerTooLong",
-      "msg": "Ticker too long"
-    },
-    {
-      "code": 6001,
-      "name": "MintTemplateTooLong",
-      "msg": "Mint template too long"
-    },
-    {
-      "code": 6002,
-      "name": "OffchainUrlTooLong",
-      "msg": "Offchain URL too long"
-    },
-    {
-      "code": 6003,
-      "name": "DeploymentTemplateTooLong",
-      "msg": "Deployment template too long"
-    },
-    {
-      "code": 6004,
-      "name": "RootTypeTooLong",
-      "msg": "Root type too long"
-    },
-    {
-      "code": 6005,
-      "name": "MintedOut",
-      "msg": "Minted out"
-    },
-    {
-      "code": 6006,
-      "name": "LegacyMigrationsAreMintedOut",
-      "msg": "Legacy migrations are minted out"
-    },
-    {
-      "code": 6007,
-      "name": "MissingGlobalTreeDelegate",
-      "msg": "Global tree delegate is missing"
-    },
-    {
-      "code": 6008,
-      "name": "IncorrectMintType",
-      "msg": "Incorrect mint type"
-    },
-    {
-      "code": 6009,
-      "name": "InvalidMetadata",
-      "msg": "Invalid Metadata"
-    },
-    {
-      "code": 6010,
-      "name": "CreatorFeeTooHigh",
-      "msg": "Creator fee too high"
-    },
-    {
-      "code": 6011,
-      "name": "MultiplierMissMatch",
-      "msg": "Custom multiplier mints require co signer"
-    },
-    {
-      "code": 6012,
-      "name": "IncorrectMintCosigner",
-      "msg": "Incorrect cosigner for mint"
-    },
-    {
-      "code": 6013,
-      "name": "IncorrectSwapToSplCosigner",
-      "msg": "Incorrect cosigner for swap to spl"
-    },
-    {
-      "code": 6014,
-      "name": "IncorrectSwapToNftCosigner",
-      "msg": "Incorrect cosigner for swap to NFT"
-    }
-  ]
-};
-
-export const IDL: LibreplexFairLaunch = {
-  "version": "0.3.1",
-  "name": "libreplex_fair_launch",
-  "instructions": [
-    {
-      "name": "initialiseV3",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "creator",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "input",
-          "type": {
-            "defined": "InitialiseInputV3"
-          }
-        }
-      ]
-    },
-    {
-      "name": "initialiseRaw",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "creator",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "input",
-          "type": {
-            "defined": "InitialiseRawInput"
-          }
-        }
-      ]
-    },
-    {
-      "name": "deployRaw",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "deployToken22",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "creator",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleEscrowTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram2022",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "toggleFreeze",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "mint",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "delegate",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "deployhybrid",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "creator",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMasterEdition",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleMetadata",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleEscrowTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "metadataProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "deployHybridUnchecked",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "creator",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleEscrowTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "relinquishCosigner",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "cosigner",
-          "isMut": true,
-          "isSigner": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "updateSymbol22",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "signer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "join",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false,
-          "relations": [
-            "fungible_mint"
-          ]
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "creatorFeeTreasury",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "signer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "nonFungibleTokenAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleTokenAccountOwner",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "input",
-          "type": {
-            "defined": "MintInput"
-          }
-        }
-      ]
-    },
-    {
-      "name": "joinraw",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "signer",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "input",
-          "type": {
-            "defined": "MintInput"
-          }
-        }
-      ]
-    },
-    {
-      "name": "updateSplMetadata",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "signer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "newUri",
-          "type": "string"
-        }
-      ]
-    },
-    {
-      "name": "switchDeploymentType",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "deploymentType",
-          "type": "u8"
-        }
-      ]
-    },
-    {
-      "name": "reduceMintCount",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "creator",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "input",
-          "type": {
-            "defined": "ReduceMintCountInput"
-          }
-        }
-      ]
-    },
-    {
-      "name": "burnExcessSpl",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "signer",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleEscrowTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "mintToken22",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "creatorFeeTreasury",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "signer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "minter",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "nonFungibleTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "input",
-          "type": {
-            "defined": "MintInput"
-          }
-        }
-      ]
-    },
-    {
-      "name": "swapToFungible22",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "signer",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "this always exists so we can specify the account type explicitly"
-          ]
-        },
-        {
-          "name": "fungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleTargetTokenAccountOwner",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleSourceAccountOwner",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "nonFungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "this always exists (otherwise we couldn't swap), so we can specify the account",
-            "type explicitly"
-          ]
-        },
-        {
-          "name": "nonFungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram22",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "swapToNonfungible22",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram22",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "mintLegacy",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "inscriber",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleTokenAccountEscrow",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "nonFungibleTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMetadata",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMasteredition",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "inscriptionSummary",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "inscription",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "inscriptionV3",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "inscriptionData",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "inscriptionsProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "metadataProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "claimTransferFeeAuthAsCreator",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "deploymentConfig",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "creator",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "creatorAta",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram22",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "sources",
-          "type": {
-            "vec": "publicKey"
-          }
-        }
-      ]
-    },
-    {
-      "name": "migrateToHashlist",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "migrationMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "migrationCounter",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "signer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "hashlist",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "mint",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "inscriptionV3",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleTokenAccountEscrow",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "swapToFungible",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "this always exists so we can specify the account type explicitly"
-          ]
-        },
-        {
-          "name": "fungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "this always exists (otherwise we couldn't swap), so we can specify the account",
-            "type explicitly"
-          ]
-        },
-        {
-          "name": "nonFungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "swapToNonfungible",
-      "accounts": [
-        {
-          "name": "deployment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "fungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "hashlistMarker",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "nonFungibleTargetTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "sysvarInstructions",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    }
-  ],
-  "accounts": [
-    {
-      "name": "deployment",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "creator",
-            "type": "publicKey"
-          },
           {
             "name": "limitPerMint",
             "type": "u64"
@@ -3581,141 +2721,50 @@ export const IDL: LibreplexFairLaunch = {
             "type": "u64"
           },
           {
-            "name": "numberOfTokensIssued",
-            "type": "u64"
-          },
-          {
-            "name": "decimals",
-            "type": "u8"
-          },
-          {
-            "name": "useInscriptions",
-            "type": "bool"
-          },
-          {
-            "name": "deploymentType",
-            "type": "u8"
-          },
-          {
-            "name": "requireCreatorCosign",
-            "type": "bool"
-          },
-          {
-            "name": "migratedFromLegacy",
-            "type": "bool"
-          },
-          {
-            "name": "escrowNonFungibleCount",
-            "type": "u64"
-          },
-          {
             "name": "ticker",
             "type": "string"
           },
           {
-            "name": "deploymentTemplate",
-            "type": "string"
-          },
-          {
-            "name": "mintTemplate",
-            "type": "string"
-          },
-          {
-            "name": "fungibleMint",
-            "type": "publicKey"
-          },
-          {
             "name": "offchainUrl",
             "type": "string"
-          }
-        ]
-      }
-    },
-    {
-      "name": "deploymentConfig",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "deployment",
-            "type": "publicKey"
           },
           {
-            "name": "creatorFeeTreasury",
-            "type": "publicKey"
-          },
-          {
-            "name": "creatorFeePerMintLamports",
-            "type": "u64"
-          },
-          {
-            "name": "transferFeeInBasisPoints",
-            "type": "u16"
-          },
-          {
-            "name": "cosignerProgramId",
-            "type": "publicKey"
-          },
-          {
-            "name": "multiplierLimits",
+            "name": "proxyProgramId",
             "type": {
-              "option": {
-                "defined": "MultiplierLimits"
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "cosignerMint",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "cosignerSwapToSpl",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "cosignerSwapToNft",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "fungibleType",
+            "type": {
+              "defined": {
+                "name": "fungibleType"
               }
             }
           },
           {
-            "name": "transferFeeWithdrawAuthority",
+            "name": "nonFungibleType",
             "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "transferFeeTargetWallet",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "totalSplEquivalentMinted",
-            "type": "u64"
-          },
-          {
-            "name": "splExcessInEscrow",
-            "type": "u64"
-          },
-          {
-            "name": "allowBurn",
-            "docs": [
-              "used for variable-rate swaps"
-            ],
-            "type": "bool"
-          },
-          {
-            "name": "allowClaimTransferFeeAuthAsCreator",
-            "type": "bool"
-          },
-          {
-            "name": "uncheckedFungible",
-            "type": "bool"
-          }
-        ]
-      }
-    },
-    {
-      "name": "hashlist",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "deployment",
-            "type": "publicKey"
-          },
-          {
-            "name": "issues",
-            "type": {
-              "vec": {
-                "defined": "MintAndOrder"
+              "defined": {
+                "name": "nonFungibleType"
               }
             }
           }
@@ -3729,7 +2778,7 @@ export const IDL: LibreplexFairLaunch = {
         "fields": [
           {
             "name": "deployment",
-            "type": "publicKey"
+            "type": "pubkey"
           },
           {
             "name": "migrationCount",
@@ -3746,338 +2795,47 @@ export const IDL: LibreplexFairLaunch = {
       }
     },
     {
-      "name": "deploymentV2",
+      "name": "mintAndOrder",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "creator",
-            "type": "publicKey"
-          },
-          {
-            "name": "limitPerMint",
-            "type": "u64"
-          },
-          {
-            "name": "maxNumberOfTokens",
-            "type": "u64"
-          },
-          {
-            "name": "numberOfTokensIssued",
-            "type": "u64"
-          },
-          {
-            "name": "fungibleDecimals",
-            "type": "u8"
-          },
-          {
-            "name": "escrowNonFungibleCount",
-            "type": "u64"
-          },
-          {
-            "name": "ticker",
-            "type": "string"
-          },
-          {
-            "name": "fungibleMint",
-            "type": "publicKey"
-          },
-          {
-            "name": "offchainUrl",
-            "type": "string"
-          },
-          {
-            "name": "proxyProgramId",
-            "type": "publicKey"
-          },
-          {
-            "name": "cosignerMint",
-            "type": "publicKey"
-          },
-          {
-            "name": "cosignerSwapToNft",
-            "type": "publicKey"
-          },
-          {
-            "name": "cosignerSwapToSpl",
-            "type": "publicKey"
-          },
-          {
-            "name": "fungibleType",
-            "type": {
-              "defined": "FungibleType"
-            }
-          },
-          {
-            "name": "nonFungibleType",
-            "type": {
-              "defined": "NonFungibleType"
-            }
-          },
-          {
-            "name": "deployed",
-            "type": "bool"
-          },
-          {
-            "name": "padding",
-            "type": {
-              "array": [
-                "u8",
-                200
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "inscriptionSummary",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "inscriptionCountTotal",
-            "type": "u64"
-          },
-          {
-            "name": "inscriptionCountImmutables",
-            "type": "u64"
-          },
-          {
-            "name": "lastInscription",
-            "type": "publicKey"
-          },
-          {
-            "name": "lastInscriber",
-            "type": "publicKey"
-          },
-          {
-            "name": "lastInscriptionCreateTime",
-            "type": "i64"
-          },
-          {
-            "name": "extension",
-            "type": {
-              "defined": "SummaryExtension"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "inscriptionV3",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "authority",
-            "type": "publicKey"
-          },
-          {
-            "name": "root",
-            "type": "publicKey"
-          },
-          {
-            "name": "inscriptionData",
-            "type": "publicKey"
+            "name": "mint",
+            "type": "pubkey"
           },
           {
             "name": "order",
             "type": "u64"
-          },
-          {
-            "name": "size",
-            "type": "u32"
-          },
-          {
-            "name": "contentType",
-            "type": "string"
-          },
-          {
-            "name": "encoding",
-            "type": "string"
-          },
-          {
-            "name": "validationHash",
-            "type": {
-              "option": "string"
-            }
           }
         ]
       }
-    }
-  ],
-  "types": [
+    },
     {
-      "name": "InitialiseRawInput",
+      "name": "mintEvent",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "limitPerMint",
-            "type": "u64"
-          },
-          {
-            "name": "maxNumberOfTokens",
-            "type": "u64"
+            "name": "mint",
+            "type": "pubkey"
           },
           {
             "name": "ticker",
             "type": "string"
           },
           {
-            "name": "offchainUrl",
-            "type": "string"
-          },
-          {
-            "name": "proxyProgramId",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "cosignerMint",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "cosignerSwapToSpl",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "cosignerSwapToNft",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "fungibleType",
-            "type": {
-              "defined": "FungibleType"
-            }
-          },
-          {
-            "name": "nonFungibleType",
-            "type": {
-              "defined": "NonFungibleType"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "InitialiseInputV3",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "limitPerMint",
+            "name": "tokensMinted",
             "type": "u64"
           },
           {
             "name": "maxNumberOfTokens",
             "type": "u64"
-          },
-          {
-            "name": "decimals",
-            "type": "u8"
-          },
-          {
-            "name": "ticker",
-            "type": "string"
-          },
-          {
-            "name": "deploymentTemplate",
-            "type": "string"
-          },
-          {
-            "name": "mintTemplate",
-            "type": "string"
-          },
-          {
-            "name": "offchainUrl",
-            "type": "string"
-          },
-          {
-            "name": "creatorCosignProgramId",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "useInscriptions",
-            "type": "bool"
-          },
-          {
-            "name": "deploymentType",
-            "type": "u8"
-          },
-          {
-            "name": "creatorFeeTreasury",
-            "type": "publicKey"
-          },
-          {
-            "name": "creatorFeePerMintInLamports",
-            "type": "u64"
-          },
-          {
-            "name": "multiplierLimits",
-            "type": {
-              "defined": "MultiplierLimits"
-            }
-          },
-          {
-            "name": "transferFeeConfig",
-            "type": {
-              "option": {
-                "defined": "TransferFeeInputConfig"
-              }
-            }
           }
         ]
       }
     },
     {
-      "name": "TransferFeeInputConfig",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "feeInBasisPoints",
-            "type": "u16"
-          },
-          {
-            "name": "withdrawAuthority",
-            "type": "publicKey"
-          },
-          {
-            "name": "targetWallet",
-            "type": "publicKey"
-          },
-          {
-            "name": "allowClaimTransferFeeAuthAsCreator",
-            "type": "bool"
-          }
-        ]
-      }
-    },
-    {
-      "name": "ReduceMintCountInput",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "maxNumberOfTokens",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "MintInput",
+      "name": "mintInput",
       "type": {
         "kind": "struct",
         "fields": [
@@ -4093,94 +2851,7 @@ export const IDL: LibreplexFairLaunch = {
       }
     },
     {
-      "name": "DeploymentConfig",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "deployment",
-            "type": "publicKey"
-          },
-          {
-            "name": "creatorFeeTreasury",
-            "type": "publicKey"
-          },
-          {
-            "name": "creatorFeePerMintLamports",
-            "type": "u64"
-          },
-          {
-            "name": "transferFeeInBasisPoints",
-            "type": "u16"
-          },
-          {
-            "name": "cosignerProgramId",
-            "type": "publicKey"
-          },
-          {
-            "name": "multiplierLimits",
-            "type": {
-              "option": {
-                "defined": "MultiplierLimits"
-              }
-            }
-          },
-          {
-            "name": "transferFeeWithdrawAuthority",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "transferFeeTargetWallet",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "totalSplEquivalentMinted",
-            "type": "u64"
-          },
-          {
-            "name": "splExcessInEscrow",
-            "type": "u64"
-          },
-          {
-            "name": "allowBurn",
-            "docs": [
-              "used for variable-rate swaps"
-            ],
-            "type": "bool"
-          },
-          {
-            "name": "allowClaimTransferFeeAuthAsCreator",
-            "type": "bool"
-          },
-          {
-            "name": "uncheckedFungible",
-            "type": "bool"
-          }
-        ]
-      }
-    },
-    {
-      "name": "MintAndOrder",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "mint",
-            "type": "publicKey"
-          },
-          {
-            "name": "order",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "MultiplierLimits",
+      "name": "multiplierLimits",
       "type": {
         "kind": "struct",
         "fields": [
@@ -4196,274 +2867,143 @@ export const IDL: LibreplexFairLaunch = {
       }
     },
     {
-      "name": "FungibleType",
+      "name": "newDeploymentEvent",
       "type": {
-        "kind": "enum",
-        "variants": [
+        "kind": "struct",
+        "fields": [
           {
-            "name": "TokenKeg"
+            "name": "ticker",
+            "type": "string"
           },
           {
-            "name": "Token2022"
+            "name": "limitPerMint",
+            "type": "u64"
+          },
+          {
+            "name": "maxNumberOfTokens",
+            "type": "u64"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
           }
         ]
       }
     },
     {
-      "name": "NonFungibleType",
+      "name": "newDeploymentV2",
       "type": {
-        "kind": "enum",
-        "variants": [
+        "kind": "struct",
+        "fields": [
           {
-            "name": "TokenKeg"
+            "name": "ticker",
+            "type": "string"
           },
           {
-            "name": "Token2022"
+            "name": "limitPerMint",
+            "type": "u64"
           },
           {
-            "name": "Nifty"
-          }
-        ]
-      }
-    },
-    {
-      "name": "SummaryExtension",
-      "type": {
-        "kind": "enum",
-        "variants": [
+            "name": "maxNumberOfTokens",
+            "type": "u64"
+          },
           {
-            "name": "None"
-          }
-        ]
-      }
-    }
-  ],
-  "events": [
-    {
-      "name": "DeploymentActive",
-      "fields": [
-        {
-          "name": "ticker",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "fungibleMint",
-          "type": "publicKey",
-          "index": false
-        }
-      ]
-    },
-    {
-      "name": "HashlistEvent",
-      "fields": [
-        {
-          "name": "mint",
-          "type": "publicKey",
-          "index": false
-        },
-        {
-          "name": "deployment",
-          "type": "publicKey",
-          "index": false
-        }
-      ]
-    },
-    {
-      "name": "MintEvent",
-      "fields": [
-        {
-          "name": "mint",
-          "type": "publicKey",
-          "index": false
-        },
-        {
-          "name": "ticker",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "tokensMinted",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "maxNumberOfTokens",
-          "type": "u64",
-          "index": false
-        }
-      ]
-    },
-    {
-      "name": "NewDeploymentEvent",
-      "fields": [
-        {
-          "name": "ticker",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "limitPerMint",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "maxNumberOfTokens",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "creator",
-          "type": "publicKey",
-          "index": false
-        }
-      ]
-    },
-    {
-      "name": "NewDeploymentV2",
-      "fields": [
-        {
-          "name": "ticker",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "limitPerMint",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "maxNumberOfTokens",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "creator",
-          "type": "publicKey",
-          "index": false
-        },
-        {
-          "name": "offChainUrl",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "requireCoSign",
-          "type": "bool",
-          "index": false
-        },
-        {
-          "name": "deploymentTemplate",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "mintTemplate",
-          "type": "string",
-          "index": false
-        },
-        {
-          "name": "usesInscriptions",
-          "type": "bool",
-          "index": false
-        },
-        {
-          "name": "decimals",
-          "type": "u8",
-          "index": false
-        },
-        {
-          "name": "deploymentType",
-          "type": "u8",
-          "index": false
-        },
-        {
-          "name": "config",
-          "type": {
-            "option": {
-              "defined": "DeploymentConfig"
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "offChainUrl",
+            "type": "string"
+          },
+          {
+            "name": "requireCoSign",
+            "type": "bool"
+          },
+          {
+            "name": "deploymentTemplate",
+            "type": "string"
+          },
+          {
+            "name": "mintTemplate",
+            "type": "string"
+          },
+          {
+            "name": "usesInscriptions",
+            "type": "bool"
+          },
+          {
+            "name": "decimals",
+            "type": "u8"
+          },
+          {
+            "name": "deploymentType",
+            "type": "u8"
+          },
+          {
+            "name": "config",
+            "type": {
+              "option": {
+                "defined": {
+                  "name": "deploymentConfig"
+                }
+              }
             }
+          }
+        ]
+      }
+    },
+    {
+      "name": "nonFungibleType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "tokenKeg"
           },
-          "index": false
-        }
-      ]
-    }
-  ],
-  "errors": [
-    {
-      "code": 6000,
-      "name": "TickerTooLong",
-      "msg": "Ticker too long"
+          {
+            "name": "token2022"
+          },
+          {
+            "name": "nifty"
+          }
+        ]
+      }
     },
     {
-      "code": 6001,
-      "name": "MintTemplateTooLong",
-      "msg": "Mint template too long"
+      "name": "reduceMintCountInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "maxNumberOfTokens",
+            "type": "u64"
+          }
+        ]
+      }
     },
     {
-      "code": 6002,
-      "name": "OffchainUrlTooLong",
-      "msg": "Offchain URL too long"
-    },
-    {
-      "code": 6003,
-      "name": "DeploymentTemplateTooLong",
-      "msg": "Deployment template too long"
-    },
-    {
-      "code": 6004,
-      "name": "RootTypeTooLong",
-      "msg": "Root type too long"
-    },
-    {
-      "code": 6005,
-      "name": "MintedOut",
-      "msg": "Minted out"
-    },
-    {
-      "code": 6006,
-      "name": "LegacyMigrationsAreMintedOut",
-      "msg": "Legacy migrations are minted out"
-    },
-    {
-      "code": 6007,
-      "name": "MissingGlobalTreeDelegate",
-      "msg": "Global tree delegate is missing"
-    },
-    {
-      "code": 6008,
-      "name": "IncorrectMintType",
-      "msg": "Incorrect mint type"
-    },
-    {
-      "code": 6009,
-      "name": "InvalidMetadata",
-      "msg": "Invalid Metadata"
-    },
-    {
-      "code": 6010,
-      "name": "CreatorFeeTooHigh",
-      "msg": "Creator fee too high"
-    },
-    {
-      "code": 6011,
-      "name": "MultiplierMissMatch",
-      "msg": "Custom multiplier mints require co signer"
-    },
-    {
-      "code": 6012,
-      "name": "IncorrectMintCosigner",
-      "msg": "Incorrect cosigner for mint"
-    },
-    {
-      "code": 6013,
-      "name": "IncorrectSwapToSplCosigner",
-      "msg": "Incorrect cosigner for swap to spl"
-    },
-    {
-      "code": 6014,
-      "name": "IncorrectSwapToNftCosigner",
-      "msg": "Incorrect cosigner for swap to NFT"
+      "name": "transferFeeInputConfig",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "feeInBasisPoints",
+            "type": "u16"
+          },
+          {
+            "name": "withdrawAuthority",
+            "type": "pubkey"
+          },
+          {
+            "name": "targetWallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "allowClaimTransferFeeAuthAsCreator",
+            "type": "bool"
+          }
+        ]
+      }
     }
   ]
 };

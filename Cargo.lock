@@ -2177,7 +2177,6 @@ dependencies = [
  "anchor-spl",
  "arrayref",
  "bytemuck",
- "libreplex_inscriptions",
  "libreplex_shared",
  "mpl-token-metadata",
  "podded",
@@ -2189,17 +2188,6 @@ dependencies = [
  "spl-token-group-interface 0.1.0",
  "spl-token-metadata-interface 0.3.3",
  "spl-type-length-value 0.3.1",
-]
-
-[[package]]
-name = "libreplex_inscriptions"
-version = "0.5.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "51c80675c533f4766974d896b8f76a79566af2c406ebb300564b78f616623a4a"
-dependencies = [
- "anchor-attribute-event",
- "anchor-derive-accounts",
- "anchor-lang",
 ]
 
 [[package]]

@@ -30,6 +30,7 @@ pub struct ClaimTransferFeeAuthAsCreatorCtx<'info> {
     #[account(mut)]
     pub fungible_mint: InterfaceAccount<'info, Mint>,
 
+    /// CHECK: Checked in constraint
     #[account(mut,  
         constraint = creator.key() == deployment.creator)]
     pub creator: UncheckedAccount<'info>,

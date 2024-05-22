@@ -52,7 +52,7 @@ pub struct InitialiseRawCtx<'info>  {
     pub system_program: Program<'info, System>,
 }
 
-pub fn initialise_raw(ctx: Context<InitialiseRawCtx>, input: InitialiseRawInput) -> Result<()> {
+pub fn initialise_raw_handler(ctx: Context<InitialiseRawCtx>, input: InitialiseRawInput) -> Result<()> {
     let deployment = &mut ctx.accounts.deployment;
     let creator = &ctx.accounts.creator;
     let fungible_mint = &ctx.accounts.fungible_mint;

@@ -147,7 +147,7 @@ pub fn join_handler<'info>(ctx: Context<'_, '_, '_, 'info, JoinCtx<'info>>, inpu
         hashlist,
         &mut ctx.accounts.hashlist_marker,
         ctx.bumps.deployment,
-        ctx.remaining_accounts, signer, false, input)?;
+        signer, false, input)?;
 
     Ok(())
 }

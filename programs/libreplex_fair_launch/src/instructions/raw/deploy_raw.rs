@@ -42,7 +42,7 @@ pub struct DeployRawCtx<'info> {
   
 }
 
-pub fn deploy_raw(ctx: Context<DeployRawCtx>) -> Result<()> {
+pub fn deploy_raw_handler(ctx: Context<DeployRawCtx>) -> Result<()> {
     let hashlist = &mut ctx.accounts.hashlist;
     let deployment = &mut ctx.accounts.deployment;
 
