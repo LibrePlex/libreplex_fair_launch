@@ -74,7 +74,7 @@ pub struct InitialiseV3Ctx<'info>  {
     pub system_program: Program<'info, System>,
 }
 
-pub fn initialise_v3(ctx: Context<InitialiseV3Ctx>, input: InitialiseInputV3) -> Result<()> {
+pub fn initialise_v3_handler(ctx: Context<InitialiseV3Ctx>, input: InitialiseInputV3) -> Result<()> {
     let deployment: &mut Account<'_, Deployment> = &mut ctx.accounts.deployment;
     let deployment_config = &mut ctx.accounts.deployment_config;
     let creator = &ctx.accounts.creator;

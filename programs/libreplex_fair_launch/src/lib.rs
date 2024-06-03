@@ -17,7 +17,7 @@ pub mod libreplex_fair_launch {
     use super::*;
 
     pub fn initialise_v3(ctx: Context<InitialiseV3Ctx>, input: InitialiseInputV3) -> Result<()> {
-        instructions::initialise_v3(ctx, input)
+        instructions::initialise_v3_handler(ctx, input)
     }
 
     pub fn initialise_raw(ctx: Context<InitialiseRawCtx>, input: InitialiseRawInput) -> Result<()> {
@@ -90,14 +90,14 @@ pub mod libreplex_fair_launch {
         ctx: Context<'_, '_, '_, 'info, SwitchDeploymentTypeCtx<'info>>,
         deployment_type: u8,
     ) -> Result<()> {
-        instructions::switch_deployment_type(ctx, deployment_type)
+        instructions::switch_deployment_type_handler(ctx, deployment_type)
     }
 
     pub fn reduce_mint_count<'info>(
         ctx: Context<'_, '_, '_, 'info, ReduceMintCountCtx<'info>>,
         input: ReduceMintCountInput,
     ) -> Result<()> {
-        instructions::reduce_mint_count(ctx, input)
+        instructions::reduce_mint_count_handler(ctx, input)
     }
 
     pub fn burn_excess_spl<'info>(
@@ -112,14 +112,14 @@ pub mod libreplex_fair_launch {
     ) -> Result<()> {
         instructions::mint_token2022(ctx, input)
     }
-    pub fn swap_to_fungible22<'info>(
-        ctx: Context<'_, '_, '_, 'info, SwapToFungible2022Ctx<'info>>,
+    pub fn swap_to_fungible22<'a, 'b: 'a>(
+        ctx: Context<'_, '_, 'b, 'a, SwapToFungible2022Ctx<'a>>,
     ) -> Result<()> {
         instructions::swap_to_fungible_2022(ctx)
     }
 
-    pub fn swap_to_nonfungible22<'a>(
-        ctx: Context<'_, '_, '_, 'a, SwapToNonFungible2022Ctx<'a>>,
+    pub fn swap_to_nonfungible22<'a, 'b: 'a>(
+        ctx: Context<'_, '_, 'b, 'a, SwapToNonFungible2022Ctx<'a>>,
     ) -> Result<()> {
         instructions::swap_to_nonfungible_2022(ctx)
     }
@@ -146,7 +146,7 @@ pub mod libreplex_fair_launch {
     // }
 
     pub fn migrate_to_hashlist(ctx: Context<MigrateToHashlistCtx>) -> Result<()> {
-        instructions::migrate_to_hashlist::migrate_to_hashlist(ctx)
+        instructions::migrate_to_hashlist::migrate_to_hashlist_handler(ctx)
     }
 
     // /* v1 swap methods */

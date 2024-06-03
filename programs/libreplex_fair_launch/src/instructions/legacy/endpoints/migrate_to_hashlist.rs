@@ -97,7 +97,7 @@ pub struct MigrateToHashlistCtx<'info>  {
 
 }
 
-pub fn migrate_to_hashlist(ctx: Context<MigrateToHashlistCtx>) -> Result<()> {
+pub fn migrate_to_hashlist_handler(ctx: Context<MigrateToHashlistCtx>) -> Result<()> {
 
     let deployment = &mut ctx.accounts.deployment;
     let hashlist = &mut ctx.accounts.hashlist;

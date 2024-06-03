@@ -2192,9 +2192,9 @@ dependencies = [
 
 [[package]]
 name = "libreplex_shared"
-version = "0.3.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9f27769daa550e10152c9841674849521b778083b0090c70f84e6993386e59f7"
+checksum = "43b2dae7e6ff2b17f8a24f4c04c3fd50d993897a2b17537d76672127a6ddfb1e"
 dependencies = [
  "anchor-lang",
  "anchor-spl",

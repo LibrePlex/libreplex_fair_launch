@@ -52,7 +52,7 @@ pub struct SwitchDeploymentTypeCtx<'info>  {
 
 
 
-pub fn switch_deployment_type(ctx: Context<SwitchDeploymentTypeCtx>, deployment_type: u8) -> Result<()> {
+pub fn switch_deployment_type_handler(ctx: Context<SwitchDeploymentTypeCtx>, deployment_type: u8) -> Result<()> {
     let deployment = &mut ctx.accounts.deployment;
     if deployment_type != HYBRID_DEPLOYMENT_TYPE {
         panic!("Can only switch to hybrid at the moment")

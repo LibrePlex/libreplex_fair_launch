@@ -98,7 +98,7 @@ pub struct SwapToNonFungible2022Ctx<'info> {
     sysvar_instructions: UncheckedAccount<'info>,
 }
 
-pub fn swap_to_nonfungible_2022<'a>(ctx: Context<'_,'_,'_,'a, SwapToNonFungible2022Ctx<'a>>) -> Result<()> {
+pub fn swap_to_nonfungible_2022<'a, 'b: 'a>(ctx: Context<'_,'_,'b,'a, SwapToNonFungible2022Ctx<'a>>) -> Result<()> {
     let token_program = &ctx.accounts.token_program;
 
     let payer = &ctx.accounts.payer;
@@ -125,7 +125,7 @@ pub fn swap_to_nonfungible_2022<'a>(ctx: Context<'_,'_,'_,'a, SwapToNonFungible2
         spl_token::ID => token_program.to_account_info(),
         spl_token_2022::ID => token_program_22.to_account_info(),
         _ => {
-            panic!("How could you do this to me")
+            panic!("Unexpected token program address for non fungible mint")
         }
     };
 
@@ -133,7 +133,7 @@ pub fn swap_to_nonfungible_2022<'a>(ctx: Context<'_,'_,'_,'a, SwapToNonFungible2
         spl_token::ID => token_program.to_account_info(),
         spl_token_2022::ID => token_program_22.to_account_info(),
         _ => {
-            panic!("How could you do this to me")
+            panic!("Unexpected token program address for fungible mint")
         }
     };
 

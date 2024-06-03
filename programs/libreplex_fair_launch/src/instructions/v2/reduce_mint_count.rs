@@ -31,7 +31,7 @@ pub struct ReduceMintCountCtx<'info>  {
 
 
 
-pub fn reduce_mint_count(ctx: Context<ReduceMintCountCtx>, input: ReduceMintCountInput) -> Result<()> {
+pub fn reduce_mint_count_handler(ctx: Context<ReduceMintCountCtx>, input: ReduceMintCountInput) -> Result<()> {
     
     let deployment: &mut Account<'_, Deployment> = &mut ctx.accounts.deployment;
   
