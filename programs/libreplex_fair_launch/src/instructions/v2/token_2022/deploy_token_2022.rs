@@ -66,10 +66,6 @@ pub struct DeployToken2022Ctx<'info> {
     #[account(mut)]
     pub fungible_escrow_token_account: UncheckedAccount<'info>,
 
-    /* INITIALISE NON_FUNGIBLE ACCOUNTS. NB: no token account neede until mint */
-    // #[account(mut)]
-    // pub non_fungible_mint: Signer<'info>,
-
     /* BOILERPLATE PROGRAM ACCOUNTS */
     /// CHECK: passed in via CPI to libreplex_inscriptions program
     #[account(

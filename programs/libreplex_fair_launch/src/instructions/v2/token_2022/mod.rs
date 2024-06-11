@@ -6,6 +6,9 @@ pub use mint_2022::*;
 pub mod deploy_token_2022;
 pub use deploy_token_2022::*;
 
+pub mod deploy_with_external_fungible;
+pub use deploy_with_external_fungible::*;
+
 
 
 // hybrid deployment creates extra metaplex metadata for the fungible mint for 
@@ -20,7 +23,8 @@ pub use swap_to_fungible_2022::*;
 pub mod swap_to_non_fungible_2022;
 pub use swap_to_non_fungible_2022::*;
 
-
+pub mod toggle_swap_cosigner;
+pub use toggle_swap_cosigner::*;
 
 pub mod update_symbol_2022;
 pub use update_symbol_2022::*;

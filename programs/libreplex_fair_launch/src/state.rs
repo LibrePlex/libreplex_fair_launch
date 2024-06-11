@@ -3,7 +3,7 @@ use solana_program::pubkey::Pubkey;
 
 pub const TICKER_LIMIT: usize = 200;
 pub const TEMPLATE_LIMIT: usize = 1200;
-pub const OFFCHAIN_URL_LIMIT: usize = 1200;
+pub const OFFCHAIN_URL_LIMIT: usize = 1000;
 
 #[derive(Clone, AnchorDeserialize, AnchorSerialize)]
 pub enum DeploymentStatus {
@@ -31,7 +31,8 @@ pub struct Deployment {
 
     pub use_inscriptions: bool,
     pub deployment_type: u8,
-    // to allow modular custom logic around this contract
+    
+    // to allow modular custom logic around this contract - applies to all 
     pub require_creator_cosign: bool,
 
     // indicates whether this deployment was migrated from legacy validator
@@ -59,6 +60,13 @@ pub struct Deployment {
 
     #[max_len(OFFCHAIN_URL_LIMIT)]
     pub offchain_url: String, // pub padding: Vec<u8, EXCESS>
+
+    /// when cosigner is active this can be toggled to disable swap cosigner
+    /// while still requiring cosigner for other actions such as join
+    pub disable_swap_cosigner: bool,
+
+    // just in case
+    pub padding: [u8; 199]
 }
 
 #[derive(Clone, AnchorDeserialize, AnchorSerialize, InitSpace, Debug)]
@@ -96,6 +104,10 @@ pub struct DeploymentConfig {
     pub allow_claim_transfer_fee_auth_as_creator: bool,
 
     pub unchecked_fungible: bool,
+
+  
+
+
 }
 
 impl DeploymentConfig {

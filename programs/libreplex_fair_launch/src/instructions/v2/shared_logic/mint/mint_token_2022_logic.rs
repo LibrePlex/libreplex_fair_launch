@@ -1,5 +1,5 @@
 use anchor_lang::prelude::*;
-use anchor_spl::associated_token::AssociatedToken;
+use anchor_spl::{associated_token::AssociatedToken};
 
 use solana_program::{program::invoke, system_instruction};
 use spl_pod::optional_keys::OptionalNonZeroPubkey;
@@ -43,24 +43,26 @@ pub fn validate_new_multiplier(
     Ok(())
 }
 
+pub struct MintNftToRecipient<'f> {
+    pub minter: AccountInfo<'f>,
+    pub token_account: AccountInfo<'f>,
+    pub associated_token_program: Program<'f, AssociatedToken>,
+    pub token_program: UncheckedAccount<'f>,
+   
+}
+
 pub fn mint_token2022_logic<'info>(
     deployment: &mut Account<'info, Deployment>,
     deployment_config: &mut Account<'info, DeploymentConfig>,
     fee_treasury: &UncheckedAccount<'info>,
-    // unused as this method no longer uses token-2022 groups
-    _fungible_mint: &AccountInfo<'info>,
-    non_fungible_mint: &Signer<'info>,
+    non_fungible_mint: &AccountInfo<'info>,
     system_program: &Program<'info, System>,
     payer: &Signer<'info>,
-    associated_token_program: &Program<'info, AssociatedToken>,
-    token_program: &UncheckedAccount<'info>,
-    minter: &AccountInfo<'info>,
-    non_fungible_token_account: &AccountInfo<'info>,
     hashlist: &mut UncheckedAccount<'info>,
     hashlist_marker: &mut HashlistMarker,
     bump_deployment: u8,
     co_signer: &Signer<'info>,
-    create_the_nft: bool,
+    nft_mint_accounts: Option<MintNftToRecipient<'info>>,
     mint_input: MintInput,
 ) -> Result<()> {
     validate_new_multiplier(&mint_input, deployment_config, deployment)?;
@@ -105,15 +107,15 @@ pub fn mint_token2022_logic<'info>(
     let deployment_seeds: &[&[u8]] =
         &["deployment".as_bytes(), ticker.as_ref(), &[bump_deployment]];
 
-    if create_the_nft {
+    if let Some(x) = nft_mint_accounts {
         // msg!("Create token 2022 w/ metadata");
         create_token_2022_and_metadata(
             MintAccounts2022 {
                 authority: deployment.to_account_info(),
                 payer: payer.to_account_info(),
-                nft_owner: minter.to_account_info(),
+                nft_owner: x.minter.to_account_info(),
                 nft_mint: non_fungible_mint.to_account_info(),
-                spl_token_program: token_program.to_account_info(),
+                spl_token_program: x.token_program.to_account_info(),
             },
             0,
             Some(TokenMetadata {
@@ -140,12 +142,12 @@ pub fn mint_token2022_logic<'info>(
         // msg!("Minting 2022");
         mint_non_fungible_2022_logic(
             &non_fungible_mint.to_account_info(),
-            non_fungible_token_account,
-            associated_token_program,
+            &x.token_account.to_account_info(),
+            &x.associated_token_program,
             payer,
-            &minter.to_account_info(),
+            &x.minter.to_account_info(),
             system_program,
-            token_program,
+            &x.token_program,
             &deployment.to_account_info(),
             deployment_seeds,
         )?;

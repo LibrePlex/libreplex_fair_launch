@@ -1,6 +1,6 @@
 [package]
 name = "libreplex_fair_launch"
-version = "0.5.1"
+version = "0.6.0"
 description = "Created with Anchor"
 edition = "2021"
 license = "MIT"
@@ -23,7 +23,7 @@ anchor-spl = {version = "~0.30"}
 
 solana-program = {version = "~1.18"}
 arrayref = "0.3.7"
-libreplex_shared = {version= "0.4.0", features=["no-entrypoint"] }
+libreplex_shared = {version= "0.4.2", features=["no-entrypoint"] }
 mpl-token-metadata = { version="~3" }
 spl-token-2022 = {version = "~3.0", features = ["no-entrypoint"]}
 spl-token-metadata-interface = {version= "~0.3"}
@@ -36,3 +36,4 @@ bytemuck = "1.14"
 [dev-dependencies]
 solana-program-test = {version= "~1.18"}
 solana-sdk= "~1.18"
+spl-associated-token-account = "3.0.2"

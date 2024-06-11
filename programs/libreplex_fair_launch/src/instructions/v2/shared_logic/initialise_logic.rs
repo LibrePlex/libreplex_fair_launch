@@ -29,6 +29,7 @@ pub fn initialise_logic(input: InitialiseInputV3,
     // at the end of mint (in case there is excess in a multi-tier rarity set-up)
     config.spl_excess_in_escrow = 0;
     config.total_spl_equivalent_minted = 0;
+    config.deployment = deployment.key();
 
     if let Some(x) = input.transfer_fee_config {
         config.transfer_fee_in_basis_points = x.fee_in_basis_points;
@@ -93,6 +94,8 @@ pub fn initialise_logic(input: InitialiseInputV3,
 
 
     deployment.use_inscriptions = input.use_inscriptions;
+
+    deployment.disable_swap_cosigner = false;
 
     // Try avoid blowing up the stack
     emit_init(deployment, config);

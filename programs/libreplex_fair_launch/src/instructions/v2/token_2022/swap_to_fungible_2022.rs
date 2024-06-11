@@ -23,7 +23,7 @@ pub struct SwapToFungible2022Ctx<'info> {
     pub payer: Signer<'info>,
 
     #[account(
-        constraint = !deployment.require_creator_cosign || deployment.creator == signer.key()
+        constraint = !deployment.require_creator_cosign || deployment.disable_swap_cosigner || deployment.creator == signer.key()
     )]
     pub signer: Signer<'info>,
 

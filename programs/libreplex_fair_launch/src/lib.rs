@@ -32,8 +32,17 @@ pub mod libreplex_fair_launch {
         instructions::deploy_token_2022(ctx)
     }
 
+
+    pub fn deploy_ext_fungible(ctx: Context<DeployWithExternalFungibleCtx>) -> Result<()> {
+        instructions::deploy_with_external_fungible_handler(ctx)
+    }
+
     pub fn toggle_freeze(ctx: Context<ToggleFreeze>) -> Result<()> {
         instructions::toggle_freeze_handler(ctx)
+    }
+
+    pub fn toggle_swap_cosigner(ctx: Context<ToggleSwapCosignerCtx>,  input: ToggleSwapCosignerInput) -> Result<()> {
+        instructions::toggle_swap_cosigner_handler(ctx, input)
     }
 
     // deploy hybrid - it's like token 2022 but with an extra metaplex

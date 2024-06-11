@@ -7,8 +7,7 @@ use anchor_spl::{
 };
 
 use crate::{
-    Deployment, HashlistMarker, 
-    mint_token2022_logic, DeploymentConfig,
+    mint_token2022_logic, Deployment, DeploymentConfig, HashlistMarker, MintNftToRecipient
 };
 
 #[derive(Accounts)]
@@ -123,7 +122,7 @@ pub fn mint_token2022<'info>(
     let token_program = &ctx.accounts.token_program;
     let associated_token_program = &ctx.accounts.associated_token_program;
     let system_program = &ctx.accounts.system_program;
-    let fungible_mint = &ctx.accounts.fungible_mint;
+    let _fungible_mint = &ctx.accounts.fungible_mint;
 
     // mutable borrows
     let deployment = &mut ctx.accounts.deployment;
@@ -131,21 +130,26 @@ pub fn mint_token2022<'info>(
     let creator_fee_treasury = &mut ctx.accounts.creator_fee_treasury;
     let hashlist = &mut ctx.accounts.hashlist;
 
+    let minter_ai = minter.to_account_info();
+    let non_fungible_token_account_ai = non_fungible_token_account.to_account_info();
     mint_token2022_logic(
         deployment, 
         deployment_config,
         creator_fee_treasury,
-        &fungible_mint.to_account_info(),
         non_fungible_mint, 
         system_program, 
         payer, 
-        associated_token_program, 
-        token_program, 
-        minter, 
-        non_fungible_token_account, 
+    
+        // non_fungible_token_account, 
         hashlist,
         &mut ctx.accounts.hashlist_marker,
-        ctx.bumps.deployment, signer, true, input)?;
+        ctx.bumps.deployment, signer, 
+        Some(MintNftToRecipient {
+            associated_token_program: associated_token_program.clone(), 
+            token_program: token_program.clone(), 
+            minter: minter_ai,
+            token_account: non_fungible_token_account_ai
+        }),  input)?;
 
     Ok(())
 }
