@@ -1,5 +1,6 @@
 **/target/*
 !**/target/types
+!**/target/idl29
 
 local-scripts
 

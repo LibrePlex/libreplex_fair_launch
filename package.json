@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "generate_legacy_idl": "avm use 0.28.0 && anchor build && mkdir -p ./target/idl29/ && cp -p -r ./target/types/*.ts ./target/idl29 && avm use 0.30.0 && anchor build",
     "libreplex_fair_launch:deploy:devnet": "anchor deploy -p libreplex_fair_launch --provider.cluster https://api.devnet.solana.com --provider.wallet ~/.config/solana/libreplex-deployer.json",
     "libreplex_fair_launch:deploy:mainnet": "anchor build -p libreplex_fair_launch && anchor deploy -p libreplex_fair_launch --provider.cluster https://api.mainnet-beta.solana.com --provider.wallet ~/.config/solana/libreplex-deployer.json",
     "libreplex_fair_launch:deploy:eclipse-testnet": "anchor build -p libreplex_fair_launch && anchor deploy -p libreplex_fair_launch --provider.cluster https://testnet.dev2.eclipsenetwork.xyz --provider.wallet ~/.config/solana/libreplex-deployer.json",

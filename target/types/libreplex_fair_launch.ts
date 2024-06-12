@@ -8,7 +8,7 @@ export type LibreplexFairLaunch = {
   "address": "",
   "metadata": {
     "name": "libreplexFairLaunch",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "spec": "0.1.0",
     "description": "Created with Anchor",
     "repository": "https://github.com/Libreplex/libreplex-program-library"
@@ -221,6 +221,91 @@ export type LibreplexFairLaunch = {
           }
         }
       ]
+    },
+    {
+      "name": "deployExtFungible",
+      "discriminator": [
+        198,
+        56,
+        173,
+        140,
+        102,
+        214,
+        163,
+        34
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "hashlist",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  97,
+                  115,
+                  104,
+                  108,
+                  105,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "fungibleMint",
+          "writable": true
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "sysvarInstructions"
+        }
+      ],
+      "args": []
     },
     {
       "name": "deployHybridUnchecked",
@@ -1038,30 +1123,8 @@ export type LibreplexFairLaunch = {
           "signer": true
         },
         {
-          "name": "fungibleMint",
-          "writable": true,
-          "relations": [
-            "deployment"
-          ]
-        },
-        {
           "name": "nonFungibleMint",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "nonFungibleTokenAccount"
-        },
-        {
-          "name": "nonFungibleTokenAccountOwner",
-          "signer": true
-        },
-        {
-          "name": "tokenProgram"
-        },
-        {
-          "name": "associatedTokenProgram",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+          "writable": true
         },
         {
           "name": "systemProgram",
@@ -2092,6 +2155,69 @@ export type LibreplexFairLaunch = {
       "args": []
     },
     {
+      "name": "toggleSwapCosigner",
+      "discriminator": [
+        171,
+        72,
+        117,
+        10,
+        121,
+        117,
+        157,
+        245
+      ],
+      "accounts": [
+        {
+          "name": "deployment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  108,
+                  111,
+                  121,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deployment.ticker",
+                "account": "deployment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "creator",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": {
+              "name": "toggleSwapCosignerInput"
+            }
+          }
+        }
+      ]
+    },
+    {
       "name": "updateSplMetadata",
       "discriminator": [
         121,
@@ -2397,6 +2523,23 @@ export type LibreplexFairLaunch = {
           {
             "name": "offchainUrl",
             "type": "string"
+          },
+          {
+            "name": "disableSwapCosigner",
+            "docs": [
+              "when cosigner is active this can be toggled to disable swap cosigner",
+              "while still requiring cosigner for other actions such as join"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "padding",
+            "type": {
+              "array": [
+                "u8",
+                199
+              ]
+            }
           }
         ]
       }
@@ -2977,6 +3120,18 @@ export type LibreplexFairLaunch = {
           {
             "name": "maxNumberOfTokens",
             "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "toggleSwapCosignerInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "disableSwapCosigner",
+            "type": "bool"
           }
         ]
       }
