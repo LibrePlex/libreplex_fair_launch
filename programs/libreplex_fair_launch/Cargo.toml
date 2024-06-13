@@ -18,22 +18,22 @@ default = []
 idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
 
 [dependencies]
-anchor-lang = {version = "~0.30", features = ["init-if-needed"]}
-anchor-spl = {version = "~0.30"}
+anchor-lang = {version = "~0.29", features = ["init-if-needed"]}
+anchor-spl = {version = "~0.29"}
 
-solana-program = {version = "~1.18"}
+solana-program = {version = ">=1.17, <1.18"}
 arrayref = "0.3.7"
-libreplex_shared = {version= "0.4.2", features=["no-entrypoint"] }
+libreplex_shared = {git = "https://github.com/LibrePlex/libreplex_shared.git", branch = "1.17", features=["no-entrypoint"] }
 mpl-token-metadata = { version="~3" }
-spl-token-2022 = {version = "~3.0", features = ["no-entrypoint"]}
-spl-token-metadata-interface = {version= "~0.3"}
-spl-token-group-interface = {version= "0.1.0"}
+spl-token-2022 = {version = "~2.0", features = ["no-entrypoint"]}
+spl-token-metadata-interface = {version= "~0.2"}
+spl-token-group-interface = {version= "=0.1.0"}
 spl-type-length-value = {version= "0.3.0"}
-spl-pod = {version= "~0.2"}
+spl-pod = {version= "~0.1"}
 podded = "0.5.1"
 bytemuck = "1.14"
 
 [dev-dependencies]
-solana-program-test = {version= "~1.18"}
-solana-sdk= "~1.18"
-spl-associated-token-account = "3.0.2"
+solana-program-test = {version= "^1.17"}
+spl-associated-token-account = "2.2.0"
+solana-sdk = {version = "^1.17"}
