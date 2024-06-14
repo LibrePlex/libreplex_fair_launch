@@ -1,5 +1,5 @@
 export type LibreplexFairLaunch = {
-  "version": "0.6.0",
+  "version": "0.7.0",
   "name": "libreplex_fair_launch",
   "instructions": [
     {
@@ -1952,7 +1952,7 @@ export type LibreplexFairLaunch = {
 };
 
 export const IDL: LibreplexFairLaunch = {
-  "version": "0.6.0",
+  "version": "0.7.0",
   "name": "libreplex_fair_launch",
   "instructions": [
     {
