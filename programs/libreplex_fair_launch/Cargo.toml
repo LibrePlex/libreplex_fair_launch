@@ -27,7 +27,7 @@ libreplex_shared = {git = "https://github.com/LibrePlex/libreplex_shared.git", b
 mpl-token-metadata = { version="~3" }
 spl-token-2022 = {version = "~2.0", features = ["no-entrypoint"]}
 spl-token-metadata-interface = {version= "~0.2"}
-spl-token-group-interface = {version= "=0.1.0"}
+spl-token-group-interface = {version= "0.1.0"}
 spl-type-length-value = {version= "0.3.0"}
 spl-pod = {version= "~0.1"}
 podded = "0.5.1"
