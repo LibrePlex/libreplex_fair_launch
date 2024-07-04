@@ -171,6 +171,70 @@ export type LibreplexFairLaunch = {
       "args": []
     },
     {
+      "name": "updateCreator",
+      "accounts": [
+        {
+          "name": "deployment",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "newCreator",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "updateSwapMarker",
+      "accounts": [
+        {
+          "name": "deployment",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "nonFungibleMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "hashlistMarker",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": "UpdateMarkerInput"
+          }
+        }
+      ]
+    },
+    {
       "name": "deployExtFungible",
       "accounts": [
         {
@@ -1582,6 +1646,22 @@ export type LibreplexFairLaunch = {
           {
             "name": "disableSwapCosigner",
             "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateMarkerInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "newDenominator",
+            "type": "u16"
+          },
+          {
+            "name": "newNumerator",
+            "type": "u16"
           }
         ]
       }
@@ -2124,6 +2204,70 @@ export const IDL: LibreplexFairLaunch = {
       "args": []
     },
     {
+      "name": "updateCreator",
+      "accounts": [
+        {
+          "name": "deployment",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "newCreator",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "updateSwapMarker",
+      "accounts": [
+        {
+          "name": "deployment",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "nonFungibleMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "hashlistMarker",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": "UpdateMarkerInput"
+          }
+        }
+      ]
+    },
+    {
       "name": "deployExtFungible",
       "accounts": [
         {
@@ -3535,6 +3679,22 @@ export const IDL: LibreplexFairLaunch = {
           {
             "name": "disableSwapCosigner",
             "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateMarkerInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "newDenominator",
+            "type": "u16"
+          },
+          {
+            "name": "newNumerator",
+            "type": "u16"
           }
         ]
       }

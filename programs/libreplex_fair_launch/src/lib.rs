@@ -32,6 +32,14 @@ pub mod libreplex_fair_launch {
         instructions::deploy_token_2022(ctx)
     }
 
+    pub fn update_creator(ctx: Context<UpdateCreator>, new_creator: Pubkey) -> Result<()> {
+        update_creator_handler(ctx, new_creator)
+    }
+
+    pub fn update_swap_marker(ctx: Context<UpdateSwapMarker>, input: UpdateMarkerInput) -> Result<()> {
+        update_swap_marker_handler(ctx, input)
+    }
+
 
     pub fn deploy_ext_fungible(ctx: Context<DeployWithExternalFungibleCtx>) -> Result<()> {
         instructions::deploy_with_external_fungible_handler(ctx)

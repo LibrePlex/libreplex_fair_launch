@@ -31,3 +31,9 @@ pub mod shared_logic;
 
 pub use claim_transfer_fee_as_creator::*;
 pub mod claim_transfer_fee_as_creator;
+
+pub mod update_creators;
+pub use update_creators::*;
+
+pub mod update_swap_marker;
+pub use update_swap_marker::*;
